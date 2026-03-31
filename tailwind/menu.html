@@ -1,0 +1,131 @@
+<!--
+  org-menu — Snippet HTML (Tailwind CSS)
+  Versão: 1.0.0
+
+  Requisitos:
+    - Tailwind CSS v3+ (via CDN, CLI ou Vite)
+    - As cores customizadas abaixo devem estar no tailwind.config.js:
+        4e-blue      → cor primária  (ex: #1e40af)
+        4e-blue-600  → hover do botão
+        4e-blue-50   → hover bg dos links
+    - menu.js para o comportamento de toggle
+
+  Como usar:
+    1. Copie o bloco <section> abaixo para o seu projeto.
+    2. Certifique-se que o Tailwind e as cores customizadas estão configurados.
+    3. Importe menu.js na página.
+    4. Edite os <a> dentro de <nav> para refletir os sites da sua organização.
+
+  Classes js-* são âncoras para o JavaScript — não as remova.
+  As classes Tailwind ao lado delas podem ser alteradas livremente.
+
+  Dependências: Tailwind CSS, menu.js
+-->
+
+<section id="org-menu" class="inline-block relative js-menu-root">
+
+  <!-- =====================================================
+       BOTÃO TRIGGER
+       ===================================================== -->
+  <button
+    id="org-menu-button"
+    type="button"
+    class="cursor-pointer inline-flex w-full justify-center items-center gap-x-2
+           rounded-b-md rounded-t-none
+           bg-4e-blue shadow-md px-6 py-3
+           text-sm font-medium text-white
+           hover:bg-4e-blue-600 transition-colors
+           js-menu-toggle"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="org-menu-dropdown"
+  >
+    <!-- Logo/ícone da organização -->
+    <img
+      src="/images/logo-minimal-white.svg"
+      alt=""
+      aria-hidden="true"
+      class="size-5 shrink-0"
+    />
+
+    <!-- Label -->
+    <span>Sites do PotencializEE</span>
+
+    <!-- Chevron — rotacionado via JS quando aberto -->
+    <svg
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+      class="size-5 text-white/70 transition-transform duration-200 js-chevron"
+    >
+      <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+    </svg>
+  </button>
+
+  <!-- =====================================================
+       PAINEL DROPDOWN
+       ===================================================== -->
+  <div
+    id="org-menu-dropdown"
+    class="absolute top-full mt-1.5 w-full min-w-max z-50
+           rounded-md bg-white shadow-md
+           outline outline-1 outline-black/5
+           hidden js-menu-dropdown"
+    role="menu"
+    aria-labelledby="org-menu-button"
+  >
+    <nav class="py-1">
+
+      <!--
+        LISTA DE LINKS
+        Duplique o <a> abaixo para cada site.
+        - href      → URL do site
+        - title     → tooltip acessível
+        - target    → "_blank" para links externos, "_self" para internos
+        Marque o site atual com aria-current="page" e as classes de link ativo.
+      -->
+
+      <!-- Site ativo — representa a página atual -->
+      <a
+        href="https://tecnologias.programa-potencializee.com.br"
+        title="Catálogo de Tecnologias"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        aria-current="page"
+        class="block px-4 py-2 text-sm text-4e-blue font-semibold
+               cursor-default pointer-events-none"
+      >
+        Catálogo de Tecnologias
+      </a>
+
+      <a
+        href="https://calculadoraenergetica.programa-potencializee.com.br"
+        title="Calculadora Energética"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="block px-4 py-2 text-sm text-gray-700
+               hover:text-4e-blue hover:bg-4e-blue-50/50 hover:underline
+               transition-colors"
+      >
+        Calculadora Energética
+      </a>
+
+      <a
+        href="https://wee.programa-potencializee.com.br"
+        title="Rede WEE - Mulheres pela Eficiência e Energia"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="block px-4 py-2 text-sm text-gray-700
+               hover:text-4e-blue hover:bg-4e-blue-50/50 hover:underline
+               transition-colors"
+      >
+        Rede WEE
+      </a>
+
+    </nav>
+  </div>
+
+</section>

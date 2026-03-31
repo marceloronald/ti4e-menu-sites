@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>org-menu — Demo (Tailwind CSS)</title>
+
+  <!-- Tailwind via CDN — apenas para demonstração.
+       Em produção, use o CLI ou Vite com purge configurado. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Cores customizadas da organização
+    // Em produção, mova isto para tailwind.config.js
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            '4e-blue': {
+              DEFAULT: '#1e40af', // TODO: substituir pela cor primária da organização
+              600:     '#1e3a8a', // TODO: tom mais escuro para hover do botão
+              50:      '#eff6ff', // TODO: tom bem claro para hover dos links
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #f9fafb; }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       Barra de navegação simulada para contextualizar o menu
+       ========================================================= -->
+  <header class="bg-white border-b border-gray-200 px-6 py-3 flex items-center gap-4">
+
+    <!-- Posicionamento típico: menu ancorado no topo, abrindo para baixo -->
+    <!-- Cole aqui o conteúdo de menu.html -->
+
+    <!-- INÍCIO DO SNIPPET -->
+    <section id="org-menu" class="inline-block relative js-menu-root">
+
+      <button
+        id="org-menu-button"
+        type="button"
+        class="cursor-pointer inline-flex w-full justify-center items-center gap-x-2
+               rounded-b-md rounded-t-none
+               bg-4e-blue shadow-md px-6 py-3
+               text-sm font-medium text-white
+               hover:bg-4e-blue-600 transition-colors
+               js-menu-toggle"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="org-menu-dropdown"
+      >
+        <img src="/images/logo-minimal-white.svg" alt="" aria-hidden="true" class="size-5 shrink-0">
+        <span>Sites do PotencializEE</span>
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+             class="size-5 text-white/70 transition-transform duration-200 js-chevron">
+          <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+        </svg>
+      </button>
+
+      <div
+        id="org-menu-dropdown"
+        class="absolute top-full mt-1.5 w-full min-w-max z-50
+               rounded-md bg-white shadow-md
+               outline outline-1 outline-black/5
+               hidden js-menu-dropdown"
+        role="menu"
+        aria-labelledby="org-menu-button"
+      >
+        <nav class="py-1">
+          <a href="https://tecnologias.programa-potencializee.com.br" role="menuitem" aria-current="page"
+             class="block px-4 py-2 text-sm text-4e-blue font-semibold cursor-default pointer-events-none">
+            Catálogo de Tecnologias
+          </a>
+          <a href="https://calculadoraenergetica.programa-potencializee.com.br" role="menuitem"
+             class="block px-4 py-2 text-sm text-gray-700 hover:text-4e-blue hover:bg-4e-blue-50/50 hover:underline transition-colors">
+            Calculadora Energética
+          </a>
+          <a href="https://wee.programa-potencializee.com.br" role="menuitem"
+             class="block px-4 py-2 text-sm text-gray-700 hover:text-4e-blue hover:bg-4e-blue-50/50 hover:underline transition-colors">
+            Rede WEE
+          </a>
+        </nav>
+      </div>
+
+    </section>
+    <!-- FIM DO SNIPPET -->
+
+    <span class="text-sm text-gray-400 ml-4">← clique no botão para abrir o dropdown</span>
+  </header>
+
+  <main class="max-w-4xl mx-auto mt-12 px-4">
+    <h1 class="text-2xl font-semibold text-gray-900 mb-2">Página de demonstração</h1>
+    <p class="text-gray-500">Clique fora do menu ou pressione <kbd class="px-1.5 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">Esc</kbd> para fechar.</p>
+  </main>
+
+  <script src="menu.js" defer></script>
+</body>
+</html>

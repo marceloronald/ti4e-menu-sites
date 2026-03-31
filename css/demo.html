@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>org-menu — Demo (CSS puro)</title>
+  <link rel="stylesheet" href="menu.css">
+  <style>
+    /* Estilos mínimos para a página de demo — não fazem parte do componente */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f9fafb;
+      color: #111827;
+    }
+    .demo-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 1.5rem;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .demo-hint {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      margin-left: 1rem;
+    }
+    .demo-content {
+      max-width: 960px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    .demo-content h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .demo-content p  { color: #6b7280; }
+    kbd {
+      display: inline-block;
+      padding: 0.125rem 0.375rem;
+      font-size: 0.75rem;
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="demo-header">
+    <!-- Snippet do componente — cole menu.html aqui em produção -->
+
+    <section id="org-menu" class="org-menu js-menu-root">
+      <button
+        id="org-menu-button"
+        type="button"
+        class="org-menu__button js-menu-toggle"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="org-menu-dropdown"
+      >
+        <img src="/images/logo-minimal-white.svg" alt="" aria-hidden="true" class="org-menu__logo">
+        <span class="org-menu__label">Sites do PotencializEE</span>
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="org-menu__chevron js-chevron">
+          <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"/>
+        </svg>
+      </button>
+
+      <div
+        id="org-menu-dropdown"
+        class="org-menu__dropdown js-menu-dropdown"
+        role="menu"
+        aria-labelledby="org-menu-button"
+        hidden
+      >
+        <nav class="org-menu__nav">
+          <a href="https://tecnologias.programa-potencializee.com.br" role="menuitem" aria-current="page" class="org-menu__link org-menu__link--active">Catálogo de Tecnologias</a>
+          <a href="https://calculadoraenergetica.programa-potencializee.com.br" role="menuitem" class="org-menu__link">Calculadora Energética</a>
+          <a href="https://wee.programa-potencializee.com.br" role="menuitem" class="org-menu__link">Rede WEE</a>
+        </nav>
+      </div>
+    </section>
+
+    <span class="demo-hint">← clique no botão para abrir o dropdown</span>
+  </header>
+
+  <main class="demo-content">
+    <h1>Página de demonstração</h1>
+    <p>Clique fora do menu ou pressione <kbd>Esc</kbd> para fechar.</p>
+  </main>
+
+  <script src="menu.js" defer></script>
+</body>
+</html>

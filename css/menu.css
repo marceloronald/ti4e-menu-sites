@@ -1,0 +1,204 @@
+/**
+ * org-menu — CSS puro
+ * Versão: 1.0.0
+ *
+ * Classes BEM utilizadas:
+ *   .org-menu               — wrapper <section> (position: relative)
+ *   .org-menu__button       — botão trigger
+ *   .org-menu__logo         — imagem/ícone dentro do botão
+ *   .org-menu__label        — texto do botão
+ *   .org-menu__chevron      — seta SVG
+ *   .org-menu__chevron--open— estado rotacionado (adicionado via JS)
+ *   .org-menu__dropdown     — painel dropdown
+ *   .org-menu__nav          — <nav> interno do painel
+ *   .org-menu__link         — link de item
+ *   .org-menu__link--active — link do site atual (destacado, não interativo)
+ *   .org-menu__divider      — separador horizontal entre grupos
+ */
+
+/* ============================================================
+   VARIÁVEIS — personalize aqui para cada produto
+   ============================================================ */
+:root {
+  /* Cores principais — espelham as cores 4e-blue do Tailwind */
+  --org-menu-primary:          #1e40af;  /* bg-4e-blue        */
+  --org-menu-primary-hover:    #1e3a8a;  /* bg-4e-blue-600    */
+  --org-menu-primary-light:    #eff6ff;  /* bg-4e-blue-50     */
+  --org-menu-primary-text:     #1e40af;  /* text-4e-blue      */
+
+  /* Botão trigger */
+  --org-menu-btn-text:         #ffffff;
+  --org-menu-btn-shadow:       0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --org-menu-btn-padding:      0.75rem 1.5rem;
+  --org-menu-btn-font-size:    0.875rem;
+  --org-menu-btn-font-weight:  500;
+  --org-menu-btn-radius:       0 0 6px 6px; /* rounded-b-md rounded-t-none */
+
+  /* Dropdown */
+  --org-menu-dropdown-bg:      #ffffff;
+  --org-menu-dropdown-shadow:  0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --org-menu-dropdown-outline: rgba(0, 0, 0, 0.05);
+  --org-menu-dropdown-radius:  6px;
+  --org-menu-dropdown-mt:      6px;
+  --org-menu-dropdown-min-w:   100%;
+
+  /* Links */
+  --org-menu-link-color:       #374151; /* text-gray-700 */
+  --org-menu-link-hover-color: #1e40af; /* hover:text-4e-blue */
+  --org-menu-link-hover-bg:    rgba(239, 246, 255, 0.5); /* hover:bg-4e-blue-50/50 */
+  --org-menu-link-font-size:   0.875rem;
+  --org-menu-link-padding:     0.5rem 1rem;
+
+  /* Chevron */
+  --org-menu-chevron-size:     1.25rem;
+  --org-menu-chevron-color:    rgba(255, 255, 255, 0.7);
+  --org-menu-chevron-duration: 200ms;
+
+  /* Z-index */
+  --org-menu-z:                50;
+}
+
+
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+.org-menu {
+  display: inline-block;
+  position: relative;
+}
+
+
+/* ============================================================
+   BOTÃO TRIGGER
+   ============================================================ */
+.org-menu__button {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             0.5rem;
+  width:           100%;
+  padding:         var(--org-menu-btn-padding);
+  background:      var(--org-menu-primary);
+  color:           var(--org-menu-btn-text);
+  font-size:       var(--org-menu-btn-font-size);
+  font-weight:     var(--org-menu-btn-font-weight);
+  border:          none;
+  border-radius:   var(--org-menu-btn-radius);
+  box-shadow:      var(--org-menu-btn-shadow);
+  cursor:          pointer;
+  transition:      background-color 150ms ease;
+  white-space:     nowrap;
+}
+
+.org-menu__button:hover {
+  background: var(--org-menu-primary-hover);
+}
+
+.org-menu__button:focus-visible {
+  outline:        2px solid var(--org-menu-primary);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   LOGO / ÍCONE
+   ============================================================ */
+.org-menu__logo {
+  width:      1.25rem;
+  height:     1.25rem;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   CHEVRON
+   ============================================================ */
+.org-menu__chevron {
+  width:      var(--org-menu-chevron-size);
+  height:     var(--org-menu-chevron-size);
+  color:      var(--org-menu-chevron-color);
+  flex-shrink: 0;
+  transition: transform var(--org-menu-chevron-duration) ease;
+}
+
+/* Estado "aberto" — adicionado via JS */
+.org-menu__chevron--open {
+  transform: rotate(180deg);
+}
+
+
+/* ============================================================
+   DROPDOWN PANEL
+   ============================================================ */
+.org-menu__dropdown {
+  position:     absolute;
+  top:          100%;
+  left:         0;
+  margin-top:   var(--org-menu-dropdown-mt);
+  min-width:    var(--org-menu-dropdown-min-w);
+  z-index:      var(--org-menu-z);
+  background:   var(--org-menu-dropdown-bg);
+  border-radius:var(--org-menu-dropdown-radius);
+  box-shadow:   var(--org-menu-dropdown-shadow);
+  outline:      1px solid var(--org-menu-dropdown-outline);
+}
+
+/* Usa o atributo HTML `hidden` para ocultar — o JS remove/adiciona `hidden` */
+.org-menu__dropdown[hidden] {
+  display: none;
+}
+
+
+/* ============================================================
+   NAV INTERNO
+   ============================================================ */
+.org-menu__nav {
+  padding: 0.25rem 0;
+}
+
+
+/* ============================================================
+   LINKS DO MENU
+   ============================================================ */
+.org-menu__link {
+  display:         block;
+  padding:         var(--org-menu-link-padding);
+  font-size:       var(--org-menu-link-font-size);
+  color:           var(--org-menu-link-color);
+  text-decoration: none;
+  transition:      color 150ms ease, background-color 150ms ease;
+}
+
+.org-menu__link:hover {
+  color:            var(--org-menu-link-hover-color);
+  background-color: var(--org-menu-link-hover-bg);
+  text-decoration:  underline;
+}
+
+.org-menu__link:focus-visible {
+  outline:        2px solid var(--org-menu-primary);
+  outline-offset: -2px;
+}
+
+/* Link ativo — indica o site atual */
+.org-menu__link--active {
+  color:          var(--org-menu-primary-text);
+  font-weight:    600;
+  cursor:         default;
+  pointer-events: none;
+}
+
+.org-menu__link--active:hover {
+  background-color: transparent;
+  text-decoration:  none;
+}
+
+
+/* ============================================================
+   SEPARADOR
+   ============================================================ */
+.org-menu__divider {
+  margin:       0.25rem 0;
+  border:       none;
+  border-top:   1px solid #f3f4f6;
+}

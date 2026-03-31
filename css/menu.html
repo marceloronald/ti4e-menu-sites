@@ -1,0 +1,108 @@
+<!--
+  org-menu — Snippet HTML (CSS puro)
+  Versão: 1.0.0
+
+  Como usar:
+    1. Copie o bloco <section> abaixo para o seu projeto.
+    2. Importe menu.css e menu.js na página.
+    3. Ajuste as variáveis CSS em :root no menu.css para as cores da sua marca.
+    4. Edite os <a> dentro de <nav> para refletir os sites da sua organização.
+
+  Dependências: menu.css, menu.js (nenhuma biblioteca externa)
+-->
+
+<section id="org-menu" class="org-menu js-menu-root">
+
+  <!-- =====================================================
+       BOTÃO TRIGGER
+       ===================================================== -->
+  <button
+    id="org-menu-button"
+    type="button"
+    class="org-menu__button js-menu-toggle"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="org-menu-dropdown"
+  >
+    <!-- Logo/ícone da organização -->
+    <img
+      src="/images/logo-minimal-white.svg"
+      alt=""
+      aria-hidden="true"
+      class="org-menu__logo"
+    />
+
+    <!-- Label -->
+    <span class="org-menu__label">Sites do PotencializEE</span>
+
+    <!-- Chevron -->
+    <svg
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+      class="org-menu__chevron js-chevron"
+    >
+      <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" />
+    </svg>
+  </button>
+
+  <!-- =====================================================
+       PAINEL DROPDOWN
+       ===================================================== -->
+  <div
+    id="org-menu-dropdown"
+    class="org-menu__dropdown js-menu-dropdown"
+    role="menu"
+    aria-labelledby="org-menu-button"
+    hidden
+  >
+    <nav class="org-menu__nav">
+
+      <!--
+        LISTA DE LINKS
+        Duplique o <a> abaixo para cada site.
+        - href   → URL do site
+        - title  → tooltip acessível
+        - target → "_blank" para links externos, "_self" para internos
+        Marque o site atual com a classe adicional org-menu__link--active.
+      -->
+
+      <!-- Site ativo — representa a página atual -->
+      <a
+        href="https://tecnologias.programa-potencializee.com.br"
+        title="Catálogo de Tecnologias"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        aria-current="page"
+        class="org-menu__link org-menu__link--active"
+      >
+        Catálogo de Tecnologias
+      </a>
+
+      <a
+        href="https://calculadoraenergetica.programa-potencializee.com.br"
+        title="Calculadora Energética"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="org-menu__link"
+      >
+        Calculadora Energética
+      </a>
+
+      <a
+        href="https://wee.programa-potencializee.com.br"
+        title="Rede WEE - Mulheres pela Eficiência e Energia"
+        target="_blank"
+        rel="noopener noreferrer"
+        role="menuitem"
+        class="org-menu__link"
+      >
+        Rede WEE
+      </a>
+
+    </nav>
+  </div>
+
+</section>
