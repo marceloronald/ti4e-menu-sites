@@ -7,7 +7,7 @@ e o versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-## [Unreleased]
+## [1.0.0]
 
 ### Added
 - Estrutura inicial do repositório
